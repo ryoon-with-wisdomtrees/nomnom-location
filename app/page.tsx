@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CategoryList from "./components/Home/CategoryList";
 import RangeSelect from "./components/Home/RangeSelect";
 import SelectRating from "./components/Home/SelectRating";
+import GoogleMapView from "./components/Home/GoogleMapView";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -27,8 +28,8 @@ export default function Home() {
         <RangeSelect />
         <SelectRating />
       </div>
-      <div className="bg-orange-300 col-span-3">
-        여기에다가 구글맵을 보여줄거임
+      <div className=" col-span-3">
+        <GoogleMapView />
       </div>
     </div>
   );

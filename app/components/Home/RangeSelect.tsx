@@ -18,7 +18,9 @@ const RangeSelect = (props: Props) => {
         }}
         defaultValue={radius}
       />
-      <label className="text-gray-500 text-[15px]">{radius} in Meter</label>
+      <label className="text-gray-500 text-[15px]">
+        {radius * 100} in Meter
+      </label>
     </div>
   );
 };
