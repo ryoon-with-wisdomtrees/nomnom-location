@@ -3,6 +3,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import CategoryList from "./components/Home/CategoryList";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -19,8 +20,12 @@ export default function Home() {
   }, []);
   return (
     <div className="grid grid-cols-4 h-screen">
-      <div className="bg-amber-300 ">first</div>
-      <div className="bg-orange-300 col-span-3">second</div>
+      <div className=" p-3">
+        <CategoryList />
+      </div>
+      <div className="bg-orange-300 col-span-3">
+        여기에다가 구글맵을 보여줄거임
+      </div>
     </div>
   );
 }
