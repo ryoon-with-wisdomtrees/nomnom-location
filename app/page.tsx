@@ -18,9 +18,9 @@ export default function Home() {
     }
   }, []);
   return (
-    <div>
-      <h2>Yes</h2>
-      <button onClick={() => signOut()}> Signout</button>
+    <div className="grid grid-cols-4 h-screen">
+      <div className="bg-amber-300 ">first</div>
+      <div className="bg-orange-300 col-span-3">second</div>
     </div>
   );
 }
