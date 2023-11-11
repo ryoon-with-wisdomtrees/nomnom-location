@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Titillium_Web } from "next/font/google";
 import "./globals.css";
 import NextAuthSessionProvider from "./provider/Provider";
 import HeaderNavbar from "./components/HeaderNavbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const titillium = Titillium_Web({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={titillium.className}>
         <NextAuthSessionProvider>
           <HeaderNavbar />
           {children}
