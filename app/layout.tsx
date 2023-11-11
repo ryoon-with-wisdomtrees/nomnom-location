@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Titillium_Web } from "next/font/google";
+import {
+  Inter,
+  Titillium_Web,
+  Dosis,
+  Abel,
+  Playfair,
+  Open_Sans,
+  Noto_Sans,
+} from "next/font/google";
 import "./globals.css";
 import NextAuthSessionProvider from "./provider/Provider";
 import HeaderNavbar from "./components/HeaderNavbar";

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CategoryList from "./components/Home/CategoryList";
+import RangeSelect from "./components/Home/RangeSelect";
+import SelectRating from "./components/Home/SelectRating";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -17,11 +19,13 @@ export default function Home() {
     if (!session?.user) {
       router.push("/login");
     }
-  }, []);
+  }, [session]);
   return (
-    <div className="grid grid-cols-4 h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-4 h-screen justify-center">
       <div className=" p-3">
         <CategoryList />
+        <RangeSelect />
+        <SelectRating />
       </div>
       <div className="bg-orange-300 col-span-3">
         여기에다가 구글맵을 보여줄거임
