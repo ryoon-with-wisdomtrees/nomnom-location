@@ -1,10 +1,11 @@
+import UserLocationContext from "@/context/UserLocationContext";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import React from "react";
+import { useContext } from "react";
 
 type Props = {};
-// const key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+
 const GoogleMapView = (props: Props) => {
-  //NEXT_PUBLIC for CLient Side
+  const { userLocation, setUserLocation } = useContext(UserLocationContext);
   const containerStyle = {
     width: "100%",
     height: "70vh",
@@ -12,6 +13,7 @@ const GoogleMapView = (props: Props) => {
   const cordinate = { lat: -34.397, lng: 150.644 };
   return (
     <div>
+      {/**  //NEXT_PUBLIC for CLient Side */}
       <LoadScript
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
         mapIds={[process.env.NEXT_PUBLIC_GOOGLE_MAP_ID]}
