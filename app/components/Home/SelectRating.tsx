@@ -1,10 +1,27 @@
 import Data from "@/\bSharedData/Data";
+import Image from "next/image";
 import React, { useState } from "react";
 
 // type Props = { onRatingChange: (arg0: any) => void };
 type Props = {
   handleOnRatingChange: (arg0: any, arg1: any) => void;
   selectRating: any;
+};
+
+const ReturnThumbsUps = (thumbs: any) => {
+  {
+    let result = [];
+    for (let index = 0; index < parseInt(thumbs); index++) {
+      console.log("parseInt(thumbs)", parseInt(thumbs));
+      result.push(<Image src="/up.png" alt="logo" width={40} height={40} />);
+    }
+    if (thumbs % 1 !== 0) {
+      result.push(
+        <Image src="/half-up.png" alt="logo" width={40} height={40} />
+      );
+    }
+    return result;
+  }
 };
 
 const SelectRating = ({ handleOnRatingChange, selectRating }: Props) => {
@@ -26,7 +43,13 @@ const SelectRating = ({ handleOnRatingChange, selectRating }: Props) => {
       <div>
         {Data.ratingList.map((data, index) => (
           <div key={index} className="flex justify-between">
-            <label>{data.icon}</label>
+            <div className="flex flex-row items-center">
+              <div className="flex flex-row">
+                {ReturnThumbsUps(Number(data.name))}
+              </div>
+              <label className="text-orange-400 ">{data.name}</label>
+            </div>
+
             <input
               type="checkbox"
               onChange={(e) =>

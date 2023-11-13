@@ -72,25 +72,7 @@ export default function Home() {
 
     console.log("result", result);
     setBusinessList(result);
-    // setBusinessListOrg(result);
   }, [selectRating]);
-  //any만이 무적은 아닐텐데 이거 하며 따로 찾아보자.
-  // const onRatingChange = (rating: any) => {
-  //   if (rating.length == 0) {
-  //     setBusinessList(businessListOrg);
-  //   }
-  //   const result = businessList.filter((item: any) => {
-  //     for (let i = 0; i < rating.length; i++) {
-  //       if (item.rating >= rating[i]) {
-  //         return true;
-  //       }
-  //       return false;
-  //     }
-  //   });
-
-  //   console.log("result", result);
-  //   // setBusinessList(result);
-  // };
 
   const handleOnRangeChange = (event: any) => {
     setRadius(Number(event.target.value));
@@ -104,7 +86,6 @@ export default function Home() {
       setSelectedRating(selectRating.filter((num) => num !== value));
     }
     console.log("selectRating", selectRating);
-    // onRatingChange(selectRating);
   };
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 h-screen justify-center">
