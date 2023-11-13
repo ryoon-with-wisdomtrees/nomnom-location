@@ -17,6 +17,7 @@ import SelectedBusinessContext from "@/context/SelectedBusinessContext";
 
 export default function Home() {
   const { data: session } = useSession();
+
   const [category, setCategory] = useState(Data.CategoryListData[0].value); //초기화
   const [radius, setRadius] = useState(2500);
   const [selectRating, setSelectedRating] = useState<number[]>([]);
