@@ -1,16 +1,22 @@
 import UserLocationContext from "@/context/UserLocationContext";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import { useContext } from "react";
+import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
+import React, { useContext, useEffect, useState } from "react";
 
 type Props = {};
 
 const GoogleMapView = (props: Props) => {
-  const { userLocation, setUserLocation } = useContext(UserLocationContext);
+  //https://goddino.tistory.com/216
+  const { userLocation, setUserLocation }: any =
+    useContext(UserLocationContext);
+
   const containerStyle = {
     width: "100%",
     height: "70vh",
   };
-  const cordinate = { lat: -34.397, lng: 150.644 };
+
+  // const cordinate = { lat: -34.397, lng: 150.644 };
+
+  console.log("userLocation: ", userLocation);
   return (
     <div>
       {/**  //NEXT_PUBLIC for CLient Side */}
@@ -20,10 +26,18 @@ const GoogleMapView = (props: Props) => {
       >
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={cordinate}
+          center={userLocation}
           zoom={10}
           options={{ mapId: process.env.NEXT_PUBLIC_GOOGLE_MAP_ID }}
-        ></GoogleMap>
+        >
+          <MarkerF
+            position={userLocation}
+            icon={{
+              url: "/user-location.png",
+              scaledSize: { width: 50, height: 50 },
+            }}
+          />
+        </GoogleMap>
       </LoadScript>
     </div>
   );

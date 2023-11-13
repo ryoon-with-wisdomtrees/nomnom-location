@@ -2,7 +2,7 @@
 // import type { Metadata } from "next";
 import UserLocationContext from "@/context/UserLocationContext";
 import { Titillium_Web } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderNavbar from "./components/HeaderNavbar";
 import "./globals.css";
 import NextAuthSessionProvider from "./provider/Provider";
@@ -19,9 +19,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [userLocation, setUserLocation] = useState([]);
+  const [userLocation, setUserLocation] = useState<any>({});
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+  const getUserLocation = () => {
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      console.log(pos);
+      setUserLocation({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      });
+    });
+  };
   return (
     <html lang="en">
+      {/* <script
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
+      ></script> */}
       <body className={titillium.className}>
         <NextAuthSessionProvider>
           <UserLocationContext.Provider
