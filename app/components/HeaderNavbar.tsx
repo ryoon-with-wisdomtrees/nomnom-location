@@ -1,8 +1,16 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 function HeaderNavBar() {
   const { data: session } = useSession();
   const [profileClick, setProfileClick] = useState(false);
@@ -18,8 +26,17 @@ function HeaderNavBar() {
       <div className="flex items-center justify-between p-2 shadow-md">
         <div className="flex gap-7 items-center">
           <Image src="/nom_logo.png" alt="logo" width={50} height={50} />
-          <h2 className="cursor-pointer hover:text-[#f49e42]">Home</h2>
+          <h2 className=" text-[#f49e42] font-bold">쩝쩝 Location</h2>
+          <Link href={"/"}>
+            <h2 className="cursor-pointer hover:text-[#f49e42]">Home</h2>
+          </Link>
+
           <h2 className="cursor-pointer hover:text-[#f49e42]">Favourite</h2>
+          <Link href={"/about"}>
+            <h2 className="cursor-pointer text-[#f0ba81]  hover:text-[#f49e42]">
+              about
+            </h2>
+          </Link>
         </div>
         <div className=" bg-gray-100 p-[6px] rounded-md w-[40%] gap-3 hidden md:flex">
           {/**https://heroicons.com/ */}
@@ -45,7 +62,7 @@ function HeaderNavBar() {
           />
         </div>
         <div>
-          {session?.user ? (
+          {/* {session?.user ? (
             <div>
               <Image
                 src={session.user.image || ""}
@@ -67,7 +84,28 @@ function HeaderNavBar() {
                 </div>
               ) : null}
             </div>
-          ) : null}
+          ) : null} */}
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Image
+                src={session.user.image || ""}
+                alt="user"
+                width={40}
+                height={40}
+                onClick={() => setProfileClick((prev) => !prev)}
+                className="rounded-full cursor-pointer 
+              hover:border-[2px] border-[#f49e42]"
+              />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem
+                className={" text-[#f0ba81]  hover:text-[#f49e42]"}
+                onClick={() => signOut()}
+              >
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     )

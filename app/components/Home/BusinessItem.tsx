@@ -7,7 +7,7 @@ function BusinessItem({
   business,
   showDir = false,
 }: {
-  business: {};
+  business: any;
   showDir?: boolean;
 }) {
   const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
@@ -26,10 +26,10 @@ function BusinessItem({
     );
   }, []);
 
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const calculateDistance = (lat1: any, lon1: any, lat2: any, lon2: any) => {
     const earthRadius = 6371; // in kilometers
 
-    const degToRad = (deg) => {
+    const degToRad = (deg: any) => {
       return deg * (Math.PI / 180);
     };
 
@@ -45,7 +45,7 @@ function BusinessItem({
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const distance = earthRadius * c;
+    const distance: any = earthRadius * c;
 
     setDistance(distance.toFixed(1));
     return distance.toFixed(2); // Return the distance with 2 decimal places
@@ -72,7 +72,11 @@ function BusinessItem({
      bg-white hover:scale-110 transition-all mt-[20px] cursor-pointer"
     >
       <Image
-        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_ref}&key=${GOOGLE_API_KEY}`}
+        src={
+          photo_ref !== ""
+            ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_ref}&key=${GOOGLE_API_KEY}`
+            : "/no-image.jpg"
+        }
         alt={business.name}
         width={180}
         height={80}
@@ -105,15 +109,15 @@ function BusinessItem({
       {showDir ? (
         <div className="border-t-[1px] p-1 mt-1">
           <h2
-            className="text-[#0075ff]
+            className="text-orange-500
               flex justify-between items-center"
           >
             Dist: {distance} Mile
             <span
               className="border-[1px] p-1 rounded-full
-              border-blue-500
+              border-orange-500
               hover:text-white
-              hover:bg-blue-500"
+              hover:bg-orange-500"
               onClick={() => onDirectionClick()}
             >
               Get Direction

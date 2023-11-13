@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 
-type Props = {};
+type Props = { handleOnRangeChange: (arg0: any) => void; radius: any };
 
-const RangeSelect = (props: Props) => {
-  const [radius, setRadius] = useState(10);
+const RangeSelect = ({ handleOnRangeChange, radius }: Props) => {
+  // const [radius, setRadius] = useState(2500);
   return (
     <div className="mt-5">
       <h2 className="font-bold px-2">Select Radius (In Meter)</h2>
       <input
         type="range"
         className="w-full h-2 bg-gray-200 rounded-lg appearance-none  cursor-pointer accent-[#f49e42] "
-        min={0}
-        max={100}
-        step={10}
+        min="500"
+        max="5000"
+        step="500"
         onChange={(e) => {
-          setRadius(Number(e.target.value));
+          handleOnRangeChange(e);
         }}
         defaultValue={radius}
       />

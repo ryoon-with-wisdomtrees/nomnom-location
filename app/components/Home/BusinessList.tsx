@@ -2,11 +2,17 @@ import React, { useContext, useRef } from "react";
 import BusinessItem from "./BusinessItem";
 import SelectedBusinessContext from "@/context/SelectedBusinessContext";
 
-function BusinessList({ businessList }: { businessList: [] }) {
+function BusinessList({
+  businessList,
+  setSelectedBusiness,
+}: {
+  businessList: [];
+  setSelectedBusiness: (arg0: any) => void;
+}) {
   const elementRef = useRef(null);
-  const { selectedBusiness, setSelectedBusiness }: any = useContext(
-    SelectedBusinessContext
-  );
+  // const { selectedBusiness, setSelectedBusiness }: any = useContext(
+  //   SelectedBusinessContext
+  // );
 
   const slideRight = (element: any) => {
     element.scrollLeft += 500;
@@ -40,7 +46,13 @@ function BusinessList({ businessList }: { businessList: [] }) {
         {businessList.map(
           (item, index) =>
             index <= 7 && (
-              <div key={index} onClick={() => setSelectedBusiness(item)}>
+              <div
+                key={index}
+                onClick={() => {
+                  console.log("businessList item", item);
+                  setSelectedBusiness(item);
+                }}
+              >
                 <BusinessItem business={item} />
               </div>
             )
