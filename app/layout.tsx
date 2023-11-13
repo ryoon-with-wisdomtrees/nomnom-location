@@ -1,6 +1,7 @@
 "use client";
 // import type { Metadata } from "next";
 import UserLocationContext from "@/context/UserLocationContext";
+import SelectedBusinessContext from "@/context/SelectedBusinessContext";
 import { Titillium_Web } from "next/font/google";
 import { useEffect, useState } from "react";
 import HeaderNavbar from "./components/HeaderNavbar";
@@ -19,7 +20,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  interface IProductItem {}
+  type IProductContext = [
+    IProductItem[] | undefined,
+    React.Dispatch<React.SetStateAction<IProductItem[] | undefined>>
+  ];
+
   const [userLocation, setUserLocation] = useState<any>({});
+  const [selectedBusiness, setSelectedBusiness] = useState<any>({});
   useEffect(() => {
     getUserLocation();
   }, []);
@@ -39,12 +47,16 @@ export default function RootLayout({
       ></script> */}
       <body className={titillium.className}>
         <NextAuthSessionProvider>
-          <UserLocationContext.Provider
-            value={{ userLocation, setUserLocation }}
+          <SelectedBusinessContext.Provider
+            value={{ selectedBusiness, setSelectedBusiness }}
           >
-            <HeaderNavbar />
-            {children}
-          </UserLocationContext.Provider>
+            <UserLocationContext.Provider
+              value={{ userLocation, setUserLocation }}
+            >
+              <HeaderNavbar />
+              {children}
+            </UserLocationContext.Provider>
+          </SelectedBusinessContext.Provider>
         </NextAuthSessionProvider>
       </body>
     </html>

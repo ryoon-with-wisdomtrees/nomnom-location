@@ -1,3 +1,4 @@
-const { createContext } = require("react");
+import { createContext } from "react";
 
-export const SelectedBusinessContext=createContext(null)
+const SelectedBusinessContext = createContext({});
+export default SelectedBusinessContext;

@@ -42,30 +42,31 @@ export default function Home() {
     const tempLng = userLocation.lng;
     GlobalApi.getGooglePlace({ category, radius, tempLat, tempLng }).then(
       (response: AxiosResponse) => {
-        console.log("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㄴ:", response.data.product.results);
-        // setBusinessList(resp.data.product.results);
-        // setBusinessListOrg(resp.data.product.results);
-        // setLoading(false);
+        console.log("AxiosResponse========: ", response.data.product.results);
+        setBusinessList(response.data.product.results);
+        setBusinessListOrg(response.data.product.results);
+        setLoading(false);
       }
     );
     // }
   };
 
-  // const onRatingChange = (rating) => {
-  //   if (rating.length == 0) {
-  //     setBusinessList(businessListOrg);
-  //   }
-  //   const result = businessList.filter((item) => {
-  //     for (let i = 0; i < rating.length; i++) {
-  //       if (item.rating >= rating[i]) {
-  //         return true;
-  //       }
-  //       return false;
-  //     }
-  //   });
+  //any만이 무적은 아닐텐데 이거 하며 따로 찾아보자.
+  const onRatingChange = (rating: any) => {
+    if (rating.length == 0) {
+      setBusinessList(businessListOrg);
+    }
+    const result = businessList.filter((item: any) => {
+      for (let i = 0; i < rating.length; i++) {
+        if (item.rating >= rating[i]) {
+          return true;
+        }
+        return false;
+      }
+    });
 
-  //   console.log(result);
-  // };
+    console.log(result);
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 h-screen justify-center">
@@ -76,7 +77,7 @@ export default function Home() {
       </div>
       <div className=" col-span-3">
         <GoogleMapView businessList={businessList} />
-        {/* <div
+        <div
           className="md:absolute mx-2 w-[90%] md:w-[74%]
            bottom-36 relative md:bottom-3"
         >
@@ -89,7 +90,7 @@ export default function Home() {
               ))}
             </div>
           )}
-        </div> */}
+        </div>
       </div>
     </div>
   );
