@@ -2,39 +2,71 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CategoryList from "./components/Home/CategoryList";
 import GoogleMapView from "./components/Home/GoogleMapView";
 import RangeSelect from "./components/Home/RangeSelect";
 import SelectRating from "./components/Home/SelectRating";
+import GlobalApi from "@/\bSharedData/GlobalApi";
+import UserLocationContext from "@/context/UserLocationContext";
+import SkeltonLoading from "./components/SkeltonLoading";
+import BusinessList from "./components/Home/BusinessList";
+import { AxiosResponse } from "axios";
 
 export default function Home() {
   const { data: session } = useSession();
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("Italian restaurant");
   const [radius, setRadius] = useState(2500);
-  const [businessList, setBusinessList] = useState([]);
+  const [businessList, setBusinessList]: any = useState([]);
   const [businessListOrg, setBusinessListOrg] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
+  const { userLocation, setUserLocation }: any =
+    useContext(UserLocationContext);
+
   useEffect(() => {
     if (!session?.user) {
       router.push("/login");
     }
   }, [session]);
-  // useEffect(() => {
-  //   getUserLocation();
-  // }, []);
-  // const getUserLocation = () => {
-  //   navigator.geolocation.getCurrentPosition(function (pos) {
-  //     console.log(typeof pos);
-  //     console.log(typeof pos.coords);
-  //     // setUserLocation({
-  //     //   lat: pos.coords.latitude,
-  //     //   lng: pos.coords.longitude,
-  //     // });
+
+  useEffect(() => {
+    getGooglePlace();
+  }, [category, radius]);
+
+  const getGooglePlace = () => {
+    // if (category) {
+    //   setLoading(true);
+    //https://stackoverflow.com/questions/31816061/why-am-i-getting-an-error-object-literal-may-only-specify-known-properties
+    const tempLat = userLocation.lat;
+    const tempLng = userLocation.lng;
+    GlobalApi.getGooglePlace({ category, radius, tempLat, tempLng }).then(
+      (response: AxiosResponse) => {
+        console.log("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㄴ:", response.data.product.results);
+        // setBusinessList(resp.data.product.results);
+        // setBusinessListOrg(resp.data.product.results);
+        // setLoading(false);
+      }
+    );
+    // }
+  };
+
+  // const onRatingChange = (rating) => {
+  //   if (rating.length == 0) {
+  //     setBusinessList(businessListOrg);
+  //   }
+  //   const result = businessList.filter((item) => {
+  //     for (let i = 0; i < rating.length; i++) {
+  //       if (item.rating >= rating[i]) {
+  //         return true;
+  //       }
+  //       return false;
+  //     }
   //   });
+
+  //   console.log(result);
   // };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 h-screen justify-center">
       <div className=" p-3">
@@ -43,7 +75,21 @@ export default function Home() {
         <SelectRating />
       </div>
       <div className=" col-span-3">
-        <GoogleMapView />
+        <GoogleMapView businessList={businessList} />
+        {/* <div
+          className="md:absolute mx-2 w-[90%] md:w-[74%]
+           bottom-36 relative md:bottom-3"
+        >
+          {!loading ? (
+            <BusinessList businessList={businessList} />
+          ) : (
+            <div className="flex gap-3">
+              {[1, 2, 3, 4, 5].map((item, index) => (
+                <SkeltonLoading key={index} />
+              ))}
+            </div>
+          )}
+        </div> */}
       </div>
     </div>
   );

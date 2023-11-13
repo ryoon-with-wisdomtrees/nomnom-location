@@ -2,9 +2,7 @@ import UserLocationContext from "@/context/UserLocationContext";
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
 import React, { useContext, useEffect, useState } from "react";
 
-type Props = {};
-
-const GoogleMapView = (props: Props) => {
+const GoogleMapView = (businessList: any) => {
   //https://goddino.tistory.com/216
   const { userLocation, setUserLocation }: any =
     useContext(UserLocationContext);
@@ -27,14 +25,20 @@ const GoogleMapView = (props: Props) => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={userLocation}
-          zoom={10}
+          zoom={14}
           options={{ mapId: process.env.NEXT_PUBLIC_GOOGLE_MAP_ID }}
         >
           <MarkerF
             position={userLocation}
             icon={{
               url: "/user-location.png",
-              scaledSize: { width: 50, height: 50 },
+              scaledSize: {
+                width: 50,
+                height: 50,
+                equals(other) {
+                  return true;
+                },
+              },
             }}
           />
         </GoogleMap>

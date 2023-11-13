@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
+    "axios": "^1.6.1",
     "next": "14.0.2",
     "next-auth": "^4.24.5",
     "react": "^18",

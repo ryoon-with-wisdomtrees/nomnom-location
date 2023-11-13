@@ -1,11 +1,10 @@
 const { default: axios } = require("axios");
 
-type Props = {
+interface Props {
   category: string;
-  radius: string;
-  lat: string;
-  lng: string;
-};
+  radius: number;
+  [others: string]: any;
+}
 
 const getGooglePlace = ({ category, radius, lat, lng }: Props) =>
   axios.get(
