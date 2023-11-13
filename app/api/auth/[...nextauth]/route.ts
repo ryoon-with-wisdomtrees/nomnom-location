@@ -1,6 +1,5 @@
-import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth";
-import { OAuthUserConfig } from "next-auth/providers/oauth";
+import GoogleProvider from "next-auth/providers/google";
 
 // const GoogleProfile: OAuthUserConfig<any> = {
 //   clientId: process.env.GOOGLE_CLIENT_ID || "",
