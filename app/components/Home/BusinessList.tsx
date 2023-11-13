@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from "react";
 import BusinessItem from "./BusinessItem";
-import { SelectedBusinessContext } from "@/context/SelectedBusinessContext";
+import SelectedBusinessContext from "@/context/SelectedBusinessContext";
 
 function BusinessList({ businessList }: { businessList: [] }) {
   const elementRef = useRef(null);

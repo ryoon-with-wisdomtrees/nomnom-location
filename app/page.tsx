@@ -15,7 +15,7 @@ import { AxiosResponse } from "axios";
 
 export default function Home() {
   const { data: session } = useSession();
-  const [category, setCategory] = useState("Italian restaurant");
+  const [category, setCategory] = useState("마라탕"); //초기화
   const [radius, setRadius] = useState(2500);
   const [businessList, setBusinessList]: any = useState([]);
   const [businessListOrg, setBusinessListOrg] = useState([]);
