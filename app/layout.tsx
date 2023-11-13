@@ -2,13 +2,18 @@
 // import type { Metadata } from "next";
 import UserLocationContext from "@/context/UserLocationContext";
 import SelectedBusinessContext from "@/context/SelectedBusinessContext";
-import { Titillium_Web } from "next/font/google";
+import {
+  Titillium_Web,
+  Nanum_Gothic,
+  Nanum_Gothic_Coding,
+  Nanum_Myeongjo,
+} from "next/font/google";
 import { useEffect, useState } from "react";
 import HeaderNavbar from "./components/HeaderNavbar";
 import "./globals.css";
 import NextAuthSessionProvider from "./provider/Provider";
 
-const titillium = Titillium_Web({ subsets: ["latin"], weight: "400" });
+const titillium = Nanum_Gothic_Coding({ subsets: ["latin"], weight: "400" });
 
 const metadata = {
   title: "Create Next App",

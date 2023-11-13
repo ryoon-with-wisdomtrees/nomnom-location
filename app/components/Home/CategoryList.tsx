@@ -25,7 +25,7 @@ const CategoryList = (props: Props) => {
            }`}
           >
             <Image alt="" src={data.icon} width={40} height={40} />
-            {data.name}
+            <p className="text-[14px]">{data.name}</p>
           </div>
         ))}
       </div>

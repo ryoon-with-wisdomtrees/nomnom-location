@@ -17,7 +17,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center items-center mt-[10%] gap-10">
-      <Image src="/logo.png" alt="logo" width={100} height={100} />
+      <Image src="/nom_logo.png" alt="logo" width={100} height={100} />
       <div className="px-6 sm:px-0 max-w-sm ">
         <button
           type="button"

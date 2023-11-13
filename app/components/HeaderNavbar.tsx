@@ -17,7 +17,7 @@ function HeaderNavBar() {
     session?.user && (
       <div className="flex items-center justify-between p-2 shadow-md">
         <div className="flex gap-7 items-center">
-          <Image src="/logo.png" alt="logo" width={50} height={50} />
+          <Image src="/nom_logo.png" alt="logo" width={50} height={50} />
           <h2 className="cursor-pointer hover:text-[#f49e42]">Home</h2>
           <h2 className="cursor-pointer hover:text-[#f49e42]">Favourite</h2>
         </div>
