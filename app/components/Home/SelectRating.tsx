@@ -13,11 +13,11 @@ const ReturnThumbsUps = (thumbs: any) => {
     let result = [];
     for (let index = 0; index < parseInt(thumbs); index++) {
       console.log("parseInt(thumbs)", parseInt(thumbs));
-      result.push(<Image src="/up.png" alt="logo" width={40} height={40} />);
+      result.push(<Image src="/up.png" alt="logo" width={35} height={35} />);
     }
     if (thumbs % 1 !== 0) {
       result.push(
-        <Image src="/half-up.png" alt="logo" width={40} height={40} />
+        <Image src="/half-up.png" alt="logo" width={35} height={35} />
       );
     }
     return result;
@@ -47,7 +47,9 @@ const SelectRating = ({ handleOnRatingChange, selectRating }: Props) => {
               <div className="flex flex-row">
                 {ReturnThumbsUps(Number(data.name))}
               </div>
-              <label className="text-orange-400 ">{data.name}</label>
+              <label className="text-orange-400 block md:hidden">
+                {data.name}
+              </label>
             </div>
 
             <input

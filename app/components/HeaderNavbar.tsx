@@ -11,10 +11,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
 function HeaderNavBar() {
   const { data: session } = useSession();
   const [profileClick, setProfileClick] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
       setProfileClick(false); //클릭한후 6초 정도 뒤에는 다시 사라지게.
@@ -106,7 +107,10 @@ function HeaderNavBar() {
             <DropdownMenuContent>
               <DropdownMenuItem
                 className={" text-[#f0ba81]  hover:text-[#f49e42]"}
-                onClick={() => signOut()}
+                onClick={() => {
+                  signOut();
+                  router.push("/");
+                }}
               >
                 Logout
               </DropdownMenuItem>
