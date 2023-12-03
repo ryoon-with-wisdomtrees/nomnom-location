@@ -1,6 +1,6 @@
 # [쩝쩝location](https://ryoon-with-nomnom-googlemap.vercel.app/)
 
-(Next.js 13 with Google map api and Google place api)
+- NomNom-location(쩝쩝 로케이션) is a Next.js 13 ver Location based Web App(w/ Googlemap & GooglePlace API)
 
 ![logo](https://ryoon-with-nomnom-googlemap.vercel.app/nom_logo.png)
 
